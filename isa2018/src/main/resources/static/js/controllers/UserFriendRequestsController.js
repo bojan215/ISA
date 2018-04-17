@@ -99,6 +99,6 @@ angular.module('app.UserFriendRequestsController', [])
                        $scope.showRequests = true;
                    else
                        $scope.showRequests = false;
-               });
-           }
+               }); 
+           }  
        });

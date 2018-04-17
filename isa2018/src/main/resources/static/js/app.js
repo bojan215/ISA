@@ -6,6 +6,7 @@ var app = angular.module('app', ['app.routes',
                                            'ui.bootstrap',
                                            'ngStorage',
                                            'ngStomp',  
-                                           'toastr'
+                                           'toastr',
+                                           'ngSanitize'
                                          ]);   
  

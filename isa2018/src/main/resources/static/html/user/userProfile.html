@@ -11,28 +11,29 @@
       <a class="nav-item nav-link disabled" href="#!/user/friends" ng-click="disconnect()">Prijatelji</a>
        <a class="nav-item nav-link disabled" href="#!/user/friendRequests" ng-click="disconnect()">Zahtevi za prijateljstvo<span class="badge" ng-if="showRequests" style="background-color: red" ngshow="$scope.friendRequestsNumber"></span></a>
       </div>
-      <div ng-if="$localStorage.logged != null">
-      <a class="nav-item" href="#/" ng-click="logOut()">Izloguj se</a>
+      <div ng-if="$localStorage.logged !== null">
+      <a class="nav-item" href="#!/" ng-click="logOut()">Izloguj se</a>
       </div>
     </div>
 
 </nav>   
-    
-    
-    
 
 
-    <div class="container">
-        <div class="carousel-caption">
-            <div class="row">
-                <div class="span3 well"> 
-                    <h3 ng-bind="$scope.loggedUser.name"></h3> 
-                    <em ng-bind="$scope.loggedUser.name"></em>
-                    <br><br><br>
-                    <button type="button" class="btn btn-default" ng-click="openUpdateModal()">Izmeni informacije o sebi</button>
-                </div>
-            </div>
+    <div class="container" style="align:left; background-color:white;width:100%">
+       
+            
+              
+                	<h3>Informacije:</h3>  <br>
+                    Ime:<h5 ng-bind-html="loggedUser.data.name"></h5> 
+                    Prezime:<h5 ng-bind-html="loggedUser.data.surname"></h5> 
+                    Email:<h5 ng-bind-html="loggedUser.data.email"></h5>
+                    Grad:<h5 ng-bind-html="loggedUser.data.city"></h5> 
+                    Telefon:<h5 ng-bind-html="loggedUser.data.phoneNum"></h5> 
+                    <br>
+                    <button type="button" class="btn btn-success" ng-click="openUpdateModal()">Izmeni informacije o sebi</button>
+					<br>
+           
         </div>
-    </div>
+
 </div>
 
