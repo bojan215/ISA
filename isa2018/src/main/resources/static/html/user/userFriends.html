@@ -1,0 +1,107 @@
+<div ng-cloak ng-controller="UserFriendsController">
+   
+   
+   <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    <a class="nav-item nav-link disabled" href="#!/user" ng-click="disconnect()">Pocetna</a>
+      <a class="nav-item nav-link disabled" href="#!/user/profile" ng-click="disconnect()">Moj Profil</a>
+      <a class="nav-item nav-link disabled" href="#!/user/friends" >Prijatelji</a>
+       <a class="nav-item nav-link disabled" href="#!/user/friendRequests" ng-click="disconnect()">Zahtevi za prijateljstvo<span class="badge" ng-if="showRequests" style="background-color: red" ngshow="$scope.friendRequestsNumber"></span></a>
+      </div>
+      <div ng-if="$localStorage.logged != null">
+      <a class="nav-item" href="#/" ng-click="logOut()">Izloguj se</a>
+      </div>
+    </div>
+
+</nav>   
+  
+    <div class="container">
+        <div class="carousel-caption">
+
+            <div class="span3 well">
+                <div class="header">
+                    <h3 class="text-muted prj-name">
+                        <span class="fa fa-users fa-2x principal-title"></span>
+                        <button type="button" class="btn btn-success btn-md" ng-click="openSearchPeopleModal()">Dodaj <span class="glyphicon glyphicon-plus"></span></button>
+                        <button type="button" class="btn btn-primary btn-md" ng-click="sortByName()">Sortiraj po imenu</button>
+                        <button type="button" class="btn btn-primary btn-md" ng-click="sortBySurname()">Sortraj po prezimenu</button>
+                        <button type="button" class="btn btn-primary btn-md" ng-click="resetSort()">Restart sort</button>
+                    </h3>
+                </div>
+
+                <div class="jumbotron list-content">
+                    <ul class="list-group">
+                        <li href="#" class="list-group-item title">PRIJATELJI</li>
+                        <li href="#" class="list-group-item text-left" ng-repeat="friend in friends" ng-if="viewMode == 'not'">
+                            
+                            <label class="name">
+                                <span ng-bind="(friend.name) + (friend.surname)"></span><br>
+                            </label>
+                            <label class="pull-right">
+                                <a  class="btn btn-danger  btn-xs glyphicon glyphicon-trash" title="Delete" ng-click="delete(friend.id)"></a>
+                            </label>
+                            <div class="break"></div>
+                            
+                        </li>
+                        <li href="#" class="list-group-item text-left" ng-repeat="friend in friends | orderBy:'name'" ng-if="viewMode == 'name'">
+                           
+                            <label class="name">
+                                 <span ng-bind="(friend.name) + (friend.surname)"></span><br><br>
+                            </label>
+                            <label class="pull-right">
+                                <a  class="btn btn-danger  btn-xs glyphicon glyphicon-trash" title="Delete" ng-click="delete(friend.id)"></a>
+                            </label>
+                            <div class="break"></div>
+                        </li>
+                        <li href="#" class="list-group-item text-left" ng-repeat="friend in friends | orderBy:'surname'" ng-if="viewMode == 'surname'">
+                            
+                            <label class="name">
+                                 <span ng-bind="(friend.name) + (friend.surname)"></span><br><br>
+                            </label>
+                            <label class="pull-right">
+                                <a  class="btn btn-danger  btn-xs glyphicon glyphicon-trash" title="Delete" ng-click="delete(friend.id)"></a>
+                            </label>
+                            <div class="break"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<style>
+    .list-content{
+        min-height:300px;
+    }
+    .list-content .list-group .title{
+        background:#5bc0de;
+        border:2px solid #DDDDDD;
+        font-weight:bold;
+        color:#FFFFFF;
+    }
+    .list-group-item img {
+        height:80px;
+        width:80px;
+    }
+
+    .jumbotron .btn {
+        padding: 5px 5px !important;
+        font-size: 12px !important;
+    }
+    .prj-name {
+        color:#5bc0de;
+    }
+    .break{
+        width:100%;
+        margin:20px;
+    }
+    .name {
+        color:#5bc0de;
+    }
+</style>

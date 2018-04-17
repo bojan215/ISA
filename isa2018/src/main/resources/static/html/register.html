@@ -1,0 +1,31 @@
+
+<div style="text-align:center" ng-cloak ng-controller="UserRegisterController">
+<div class="b1">
+	<h2>Registracija</h2>
+    <div class="container">
+        <div class="carousel-caption>
+            <form role="form"> 
+                <p><input type="text"  ng-model="newUser.name"
+                          placeholder="Unesite ime"></p>
+                <p><input type="text"  ng-model="newUser.surname"
+                          placeholder="Unesite prezime"></p>
+                <p><input type="text"  ng-model="newUser.city"
+                          placeholder="Unesite grad"></p>
+                <p><input type="text"  ng-model="newUser.phoneNum"
+                          placeholder="Unesite telefon"></p>          
+                <p><input type="email"  ng-model="newUser.email"
+                          placeholder="Unesite email"></p>
+                <p><input type="password"  ng-model="newUser.password"
+                          placeholder="Unesite lozinku"></p>
+                <p>
+                <p><input type="password" 
+                          placeholder="Ponovite lozinku" ng-model="repeatedPassword"></p>
+                <p>
+                    <button type="submit"  ng-click="registerUser(newUser)">Registruj se</button> 
+                </p>
+                </br>
+            </form>
+        </div>
+    </div>
+</div>
+</div> 

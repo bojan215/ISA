@@ -1,0 +1,26 @@
+
+<div style="text-align:center" ng-cloak ng-controller="CinemaController">
+<div class="b1">
+	<h2>Novi_bioskop</h2>
+    <div class="container">
+        <div class="carousel-caption>
+            <form role="form"> 
+                <p><input type="text"  ng-model="cinema.name"
+                          placeholder="Unesite naziv"></p>
+                <p><input type="text"  ng-model="cinema.adress"
+                          placeholder="Unesite adresu"></p>
+                <p><input type="text"  ng-model="cinema.description"
+                          placeholder="Unesite opis"></p>
+                <p><input type="text"  ng-model="cinema.evaluation"
+                          placeholder="Unesite prosecnu ocenu"></p>          
+
+    
+                <p>
+                    <button type="submit"  ng-click="cinemaGuest(cinema)">Dodaj Bioskop</button>  
+                </p>
+                </br>
+            </form>
+        </div>
+    </div>
+</div>
+</div> 

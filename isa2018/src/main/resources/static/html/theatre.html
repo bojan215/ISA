@@ -1,0 +1,26 @@
+
+<div style="text-align:center" ng-cloak ng-controller="TheatreController">
+<div class="b1">
+	<h2>Novo_pozoriste</h2>
+    <div class="container">
+        <div class="carousel-caption>
+            <form role="form"> 
+                <p><input type="text"  ng-model="theatre.name"
+                          placeholder="Unesite naziv"></p>
+                <p><input type="text"  ng-model="theatre.adress"
+                          placeholder="Unesite adresu"></p>
+                <p><input type="text"  ng-model="theatre.description"
+                          placeholder="Unesite opis"></p>
+                <p><input type="text"  ng-model="theatre.evaluation"
+                          placeholder="Unesite prosecnu ocenu"></p>          
+
+    
+                <p>
+                    <button type="submit"  ng-click="theatreGuest(theatre)">Dodaj Pozoriste</button> 
+                </p>
+                </br>
+            </form>
+        </div>
+    </div>
+</div>
+</div> 
