@@ -7,6 +7,7 @@ angular.module('app.controllers',[
     'app.UserHomeController',
     'app.UserFriendsController',
     'app.UserFriendRequestsController',
+    'app.UpdateUserProfileController',
     'app.CinemaController',
     'app.TheatreController'
 ]);

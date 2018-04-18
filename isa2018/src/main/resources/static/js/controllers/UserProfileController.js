@@ -1,6 +1,6 @@
 
 angular.module('app.UserProfileController', [])
-       .controller('UserProfileController', function ($localStorage, $scope, $uibModal, $location, $stomp, $log, toastr, UserProfileFactory) {
+       .controller('UserProfileController', function ($localStorage,$uibModal ,toastr, $scope,  $location, $stomp, $log,  UserProfileFactory) {
           function init(){
               if($localStorage.logged == null){
             	  console.log("LOGGED NULL");
@@ -10,7 +10,7 @@ angular.module('app.UserProfileController', [])
                 	  console.log("NIJE REGUSER");
                       $location.path("/")
                   }else {
-                	  console.log("INIT");
+                	  console.log("INIT"); 
                       $scope.loggedUser = $localStorage.logged;
                       $scope.friendRequestsNumber = 0;
                       $scope.showRequests = false;
@@ -24,10 +24,6 @@ angular.module('app.UserProfileController', [])
               }
           };
 
-          
-          
-          
-          
            var friendRequestSub = null;
            var acceptedFriendRequestSub = null;
            init();
@@ -64,65 +60,5 @@ angular.module('app.UserProfileController', [])
                });
            };
 
-           $scope.openUpdateModal = function () {
-               $uibModal.open({
-                   templateUrl : 'html/user/updateUserInfoModal.html',
-                   controller : 'UpdateUserProfileController',
-               }).result.then(function(updatedUser){
-                   $scope.loggedUser = updatedUser;
-               });
-           }
  
-       })
-       
-       
-       
-       .controller('UpdateUserProfileController', function ($localStorage, $scope, toastr, $uibModalInstance, $location, UserProfileFactory) {
-           function init(){
-               $scope.userToUpdate = jQuery.extend(true, {}, $localStorage.logged);
-           };
-
-           init();
-        
-
-           
-           
-           $scope.update = function(user){
-               if(validateUser(user)) {
-                   UserProfileFactory.updateRegUser(user).then(function (data) {
-                       if (data != null) {
-                           $localStorage.logged = data;
-                           $scope.userToUpdate = $localStorage.logged;
-                           $uibModalInstance.close($localStorage.logged);
-                       } else {
-                           alert("Nije moguce promeniti informacije");
-                       }
-                   });
-               }
-           };
-           $scope.close = function(){
-               $uibModalInstance.dismiss('cancel');
-           };
-           
-           function validateUser(user){
-               var checked = true;
-               if(user.name == '') {
-                   checked = false;
-                   toastr.error('Ime mora biti popunjeno');
-               }
-               if(user.surname == '') {
-                   checked = false;
-                   toastr.error('Prezime mora biti popunjeno')
-               }
-               if(user.email == '') {
-                   checked = false;
-                   toastr.error('Unesite email') 
-               }
-               var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-               if(!re.test(user.email)){
-                   toastr.error('Email adresa nije validna');
-                   checked = false;
-               }
-               return checked;
-           }
        });
