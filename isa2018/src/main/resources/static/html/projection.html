@@ -1,0 +1,38 @@
+
+<div style="text-align:center" ng-cloak ng-controller="ProjectionController">
+<div class="b1">
+	<h2>Nova projekcija</h2>
+    <div class="container">
+        <div class="carousel-caption>
+            <form role="form"> 
+                <p><input type="text"  ng-model="projection.name"
+                          placeholder="Unesite naziv"></p>
+                <p><input type="text"  ng-model="projection.actors"
+                          placeholder="Unesite spisak glumaca"></p>
+                <p><input type="text"  ng-model="projection.type"
+                          placeholder="Unesite zanr"></p>
+                <p><input type="text"  ng-model="projection.director"
+                          placeholder="Unesite ime reditelja"></p>          
+				<p><input type="text"  ng-model="projection.dutration"
+                          placeholder="Unesite trajanje"></p>
+                <p><input type="text"  ng-model="projection.poster"
+                          placeholder="Unesite poster"></p>
+                <p><input type="text"  ng-model="projection.evaluation"
+                          placeholder="Unesite prosecnu ocenu"></p>
+                <p><input type="text"  ng-model="projection.description"
+                          placeholder="Unesite kratak opis"></p>      
+                <p><input type="text"  ng-model="projection.hall"
+                          placeholder="Unesite sale u kojima se vrse projekcije"></p>
+                <p><input type="text"  ng-model="projection.term"
+                          placeholder="Unesite termine u kojima se vrse projekcije"></p>     
+    			<p><input type="text"  ng-model="projection.price"
+                          placeholder="Unesite cenu"></p>   
+                <p>
+                    <button type="submit"  ng-click="projectionGuest(projection)">Dodaj projekciju</button>  
+                </p>
+                </br>
+            </form>
+        </div>
+    </div>
+</div>
+</div> 

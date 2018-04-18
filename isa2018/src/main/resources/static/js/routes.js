@@ -31,5 +31,11 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpPro
         })
         .when('/login',{ 
             templateUrl : 'html/login.html'
-        });
+        })
+    	.when('/projection',{
+    		templateUrl : 'html/projection.html'
+    	})
+    	.when('/performance',{ 
+    		templateUrl : 'html/performance.html'
+    	});
 }]); 

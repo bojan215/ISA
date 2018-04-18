@@ -8,6 +8,7 @@ angular.module('app.services',[
 			   'app.UserHomeFactory',
                'app.UserRegisterFactory',	
 			   'app.CinemaFactory',
-			   'app.TheatreFactory'
-
+			   'app.TheatreFactory',
+			   'app.ProjectionFactory',
+			   'app.PerformanceFactory'
 ]);

@@ -1,0 +1,38 @@
+
+<div style="text-align:center" ng-cloak ng-controller="PerformanceController">
+<div class="b1">
+	<h2>Nova predstava</h2>
+    <div class="container">
+        <div class="carousel-caption>
+            <form role="form"> 
+                <p><input type="text"  ng-model="performance.name"
+                          placeholder="Unesite naziv"></p>
+                <p><input type="text"  ng-model="performance.actors"
+                          placeholder="Unesite spisak glumaca"></p>
+                <p><input type="text"  ng-model="performance.type"
+                          placeholder="Unesite zanr"></p>
+                <p><input type="text"  ng-model="performance.director"
+                          placeholder="Unesite ime reditelja"></p>          
+				<p><input type="text"  ng-model="performance.dutration"
+                          placeholder="Unesite trajanje"></p>
+                <p><input type="text"  ng-model="performance.poster"
+                          placeholder="Unesite poster"></p>
+                <p><input type="text"  ng-model="performance.evaluation"
+                          placeholder="Unesite prosecnu ocenu"></p>
+                <p><input type="text"  ng-model="performance.description"
+                          placeholder="Unesite kratak opis"></p>      
+                <p><input type="text"  ng-model="performance.hall"
+                          placeholder="Unesite sale u kojima se vrse predstave"></p>
+                <p><input type="text"  ng-model="performance.term"
+                          placeholder="Unesite termine u kojima se vrse predstave"></p>     
+    			<p><input type="text"  ng-model="performance.price"
+                          placeholder="Unesite cenu"></p>   
+                <p>
+                    <button type="submit"  ng-click="performanceGuest(performance)">Dodaj predstavu</button>  
+                </p>
+                </br>
+            </form>
+        </div>
+    </div>
+</div>
+</div> 

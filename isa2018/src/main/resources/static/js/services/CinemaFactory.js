@@ -4,7 +4,7 @@ angular.module('app.CinemaFactory',[])
 
         var factory = {};
 
-        factory.postTheatre = function(cinema) {
+        factory.postCinema = function(cinema) {
             return $http.post('/cinema', cinema);
         }
 

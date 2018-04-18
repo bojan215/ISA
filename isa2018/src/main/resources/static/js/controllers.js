@@ -8,5 +8,8 @@ angular.module('app.controllers',[
     'app.UserFriendsController',
     'app.UserFriendRequestsController',
     'app.CinemaController',
-    'app.TheatreController'
+    'app.TheatreController',
+    'app.ProjectionController',
+    'app.PerformanceController'
+    
 ]);
