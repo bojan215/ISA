@@ -22,7 +22,7 @@ angular.module('app.UserHomeController', [])
                       
                    }
                }
-           };
+           }; 
 
            var friendRequestSubscription = null;
            var acceptedFriendRequestSubscription = null;
@@ -43,7 +43,7 @@ angular.module('app.UserHomeController', [])
                      });
 
                      acceptedFriendRequestSubscription = $stomp.subscribe('/topic/friendAcceptedRequest/' + $localStorage.logged.data.id, function(friend, headers, res){
-                         toastr.info(friend.name + ' ' + friend.surname + ' accepted friend request.');
+                         toastr.info(friend.name + ' ' + friend.surname + ' je prihvatio zahtev za prijateljstvo.');
                      });
                  });
 

@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link disabled" href="#!/user" ng-click="disconnect()">Pocetna</a>
-      <a class="nav-item nav-link disabled" href="#!/user/profile">Moj Profil</a>
+      <a class="nav-item nav-link disabled" href="#!/user/profile">Moj Profil [<span style="color:black" ng-bind-html="loggedUser.data.name"></span>]</a>
       <a class="nav-item nav-link disabled" href="#!/user/friends" ng-click="disconnect()">Prijatelji</a>
        <a class="nav-item nav-link disabled" href="#!/user/friendRequests">Zahtevi za prijateljstvo<span class="badge" ng-if="showRequests" style="background-color: red" ngshow="$scope.friendRequestsNumber"></span></a>
       </div>
@@ -23,59 +23,27 @@
 
 
     <div class="container" style="align:left; background-color:white;width:100%">
-        <div class="carousel-caption">
-
-            <div class="span3 well">
-
-                <div class="jumbotron list-content">
+		<div class="jumbotron list-content">
                     <ul class="list-group" >
-                        <li href="#" class="list-group-item-info title">
-                            ZAHTEVI ZA PRIJATELJSTVO
-                        </li>
-                        <li href="#" class="list-group-item-success text-left" ng-repeat="friend in friendRequests">
+                    <h5> ZAHTEVI ZA PRIJATELJSTVO</h5>
+                       
+                        	<li  ng-repeat="friend in friendRequests.data">
                             
                             <label class="name">
-                                 <span ng-bind-html="(friend.name) + (friend.surname)"></span><br><br> 
+                                 <span ng-bind-html="(friend.name + ' ' + friend.surname)"></span></span><br><br> 
                             </label> 
                             <label class="pull-right">
-                                <a  class="btn btn-success btn-xs glyphicon glyphicon-ok" title="Accept" ng-click="accept(friend.id)"></a>
-                                <a  class="btn btn-danger  btn-xs glyphicon glyphicon-trash" title="Ignore" ng-click="ignore(friend.id)"></a>
+                                <button type="button" class="btn btn-success" ng-click="accept(friend.id)">Potvrdi</button>
+                                <button type="button" class="btn btn-danger" ng-click="ignore(friend.id)">Odbaci</button>
                             </label>
-                            <div class="break"></div>
+                            <div class="break"></div> 
                         </li>
                       
                     </ul>
-                </div>
+ 
             </div>
-        </div>
+       
         </div>
     
 </div>
 
-<style>
-    .list-content{
-        min-height:250px;
-    }
-    .list-content .list-group .title{
-        background:#0084c1;
-        border:2px solid #DDDDDD;
-        font-weight:bold;
-        color:#FFFFFF;
-    }
-
-
-    .jumbotron .btn {
-        padding: 5px 5px !important;
-        font-size: 12px !important;
-    }
-    .prj-name {
-        color:#5bc0de;
-    }
-    .break{
-        width:100%;
-        margin:20px;
-    }
-    .name {
-        color:#5bc0de;
-    }
-</style>

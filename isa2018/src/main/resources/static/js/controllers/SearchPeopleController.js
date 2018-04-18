@@ -27,15 +27,16 @@
                     }
                 } 
                
-            	$scope.foundPersons = [];
+            	$scope.foundPersons = []; 
 
             };
-
+ 
            var subscription = null;
-           var friendRequestsSubscription = null;	
-           var acceptedFriendRequestSubscription = null;
-           init();
-
+          var friendRequestsSubscription = null;	
+          var acceptedFriendRequestSubscription = null;
+           
+           init();	
+             
            $stomp.setDebug(function (args) {
                $log.debug(args)
            });
@@ -47,6 +48,7 @@
                              $scope.foundPersons = persons;
                          });
                      }, {});
+                    
            friendRequestsSubscription = $stomp.subscribe('/topic/friendRequest/' + $localStorage.logged.data.id, function(numberOfRequests, headers, res){
                     toastr.info('Imate zahtev za prijateljstvo!');
                     $scope.friendRequestsNumber = numberOfRequests;
@@ -54,11 +56,11 @@
                     $scope.showRequests = true;
                      });
            acceptedFriendRequestSubscription = $stomp.subscribe('/topic/friendAcceptedRequest/' + $localStorage.logged.data.id, function(friend, headers, res){
-               toastr.info(friend.name + ' ' + friend.surname + ' accepted friend request.');
+               toastr.info(friend.name + ' ' + friend.surname + ' je prihvatio zahtev za prijateljstvo.');
            
 
                  });
-           
+                });
            
            $scope.logOut = function(){
                $scope.disconnect();
@@ -69,7 +71,7 @@
            $scope.disconnect = function(){
                friendRequestsSubscription.unsubscribe();
                acceptedFriendRequestSubscription.unsubscribe();
-               deleteFriendSubscription.unsubscribe();
+               
                $stomp.disconnect().then(function(){
                    $log.info('disconnected');
                });

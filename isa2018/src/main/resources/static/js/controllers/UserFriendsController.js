@@ -60,7 +60,7 @@ angular.module('app.UserFriendsController', [])
                      });
 
                      acceptedFriendRequestSubscription = $stomp.subscribe('/topic/friendAcceptedRequest/' + $localStorage.logged.data.id, function(friend, headers, res){
-                         toastr.info(friend.name + ' ' + friend.surname + ' accepted friend request.');
+                         toastr.info(friend.name + ' ' + friend.surname + ' je prihvatio zahtev za prijateljstvo.');
                          UserFriendsFactory.getFriends($scope.loggedUser.data.id).then(function(data){
                              if(data != null){
                                  $scope.friends = data;

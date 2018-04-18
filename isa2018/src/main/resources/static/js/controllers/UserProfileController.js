@@ -23,7 +23,7 @@ angular.module('app.UserProfileController', [])
                   }
               }
           };
-
+          
            var friendRequestSub = null;
            var acceptedFriendRequestSub = null;
            init();
@@ -31,7 +31,7 @@ angular.module('app.UserProfileController', [])
            $stomp.setDebug(function(args){
                $log.debug(args);
            });
-
+           
            $stomp.connect('/stomp', {})
                .then(function(frame){
             	   friendRequestSub = $stomp.subscribe('/topic/friendRequest/' + $localStorage.logged.data.id, function(numberOfRequests, headers, res){
@@ -42,7 +42,7 @@ angular.module('app.UserProfileController', [])
                    });
 
             	   acceptedFriendRequestSub = $stomp.subscribe('/topic/friendAcceptedRequest/' + $localStorage.logged.data.id, function(friend, headers, res){
-                       toastr.info(friend.name + ' ' + friend.surname + ' accepted friend request.');
+                       toastr.info(friend.name + ' ' + friend.surname + ' je prihvatio zahtev za prijateljstvo.');
                    });
                });
 

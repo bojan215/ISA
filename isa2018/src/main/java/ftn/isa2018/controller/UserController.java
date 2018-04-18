@@ -56,7 +56,14 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegUser> registerUser(@RequestBody RegUser usr) throws Exception {
-        if (usr.getName() != null && usr.getSurname() != null && usr.getCity() != null && usr.getPhoneNum() != null && usr.getEmail() != null && usr.getPassword() != null) {
+
+    	
+    	if (usr.getName() != null && usr.getSurname() != null && usr.getCity() != null && usr.getPhoneNum() != null && usr.getEmail() != null && usr.getPassword() != null) {
+    		User tu=userService.findByEmail(usr.getEmail());
+    		if(tu!=null) {
+    			return new ResponseEntity<RegUser>(usr, HttpStatus.FORBIDDEN);
+    		}
+    		
         	RegUser savedGuest = regUserService.save(usr);
         	
             //mailSlanje.sendMail(usr);

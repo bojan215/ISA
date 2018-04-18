@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
     <a class="nav-item nav-link disabled" href="#!/user" >Pocetna</a>
-      <a class="nav-item nav-link disabled" href="#!/user/profile" ng-click="disconnect()">Moj Profil</a>
+      <a class="nav-item nav-link disabled" href="#!/user/profile" ng-click="disconnect()">Moj Profil [<span style="color:black" ng-bind-html="loggedUser.data.name"></span>]</a>
       <a class="nav-item nav-link disabled" href="#!/user/friends" ng-click="disconnect()">Prijatelji</a>
        <a class="nav-item nav-link disabled" href="#!/user/friendRequests" ng-click="disconnect()">Zahtevi za prijateljstvo<span class="badge" ng-if="showRequests" style="background-color: red" ngshow="$scope.friendRequestsNumber"></span></a>
       </div>
