@@ -10,6 +10,7 @@ angular.module('app.controllers',[
     'app.CinemaController',
     'app.TheatreController',
     'app.ProjectionController',
-    'app.PerformanceController'
+    'app.PerformanceController',
+    'app.BusinessController'
     
 ]);

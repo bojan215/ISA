@@ -37,5 +37,9 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpPro
     	})
     	.when('/performance',{ 
     		templateUrl : 'html/performance.html'
+    	})
+    	.when('/business',{ 
+    		templateUrl : 'html/business.html'
     	});
+    
 }]); 

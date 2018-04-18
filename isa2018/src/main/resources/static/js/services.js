@@ -10,5 +10,6 @@ angular.module('app.services',[
 			   'app.CinemaFactory',
 			   'app.TheatreFactory',
 			   'app.ProjectionFactory',
-			   'app.PerformanceFactory'
+			   'app.PerformanceFactory',
+			   'app.BusinessFactory'
 ]);

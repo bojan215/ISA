@@ -1,0 +1,26 @@
+
+<div style="text-align:center" ng-cloak ng-controller="BusinessController">
+<div class="b1">
+	<h2>Prikaz izvestaja o poslovanju</h2>
+    <div class="container">
+        <div class="carousel-caption>
+            <form role="form"> 
+                <p><input type="text"  ng-model="business.ambientevaluation"
+                          placeholder="Prosecna ocena ambijenta"></p>
+                <p><input type="text"  ng-model="business.projectionevaluation"
+                          placeholder="Prosecna ocena pojedinacnih predstava/projekcija"></p>
+                <p><input type="text"  ng-model="business.graphic"
+                          placeholder="Prikaz grafika posecenosti bioskopa/pozorista"></p>
+                <p><input type="text"  ng-model="business.income"
+                          placeholder="Prihode bioskopa/pozorista u odredjenom vremenu"></p>          
+
+    
+                <p>
+                    <button type="submit"  ng-click="businessGuest(business)">Prikaz poslovanja</button>  
+                </p>
+                </br>
+            </form>
+        </div>
+    </div>
+</div>
+</div> 
