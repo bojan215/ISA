@@ -58,6 +58,7 @@ public class UserController {
     public ResponseEntity<RegUser> registerUser(@RequestBody RegUser usr) throws Exception {
         if (usr.getName() != null && usr.getSurname() != null && usr.getCity() != null && usr.getPhoneNum() != null && usr.getEmail() != null && usr.getPassword() != null) {
         	RegUser savedGuest = regUserService.save(usr);
+        	
             //mailSlanje.sendMail(usr);
         	System.out.println(usr.getName()+usr.getType().toString());  
         	System.out.println("Uspesno poslat mejl");
@@ -89,11 +90,14 @@ public class UserController {
     public ResponseEntity<User> updateUser(@RequestBody User user) throws Exception{
         if (user.getEmail() != null && user.getName() != null && user.getSurname() != null && user.getCity() != null && user.getPhoneNum() != null) {
             User userRegistered = userService.findOne(user.getId());
+
             RegUser saved = null;
             if(userRegistered instanceof RegUser){
                 userRegistered.setName(user.getName());
                 userRegistered.setSurname(user.getSurname());
                 userRegistered.setEmail(user.getEmail());
+                userRegistered.setCity(user.getCity());
+                userRegistered.setPhoneNum(user.getPhoneNum());
                 saved = regUserService.save((RegUser)userRegistered);
             }
             if(saved != null)

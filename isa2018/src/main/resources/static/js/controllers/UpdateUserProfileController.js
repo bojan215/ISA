@@ -62,11 +62,15 @@ angular.module('app.UpdateUserProfileController', [])
            
            $scope.update = function(user){
                if(validateUser(user)) {
+            	   user.id=$localStorage.logged.data.id; 
                    UserProfileFactory.updateRegUser(user).then(function (data) {
+                	   console.log("UPDATE"); 
                        if (data != null) {
                            $localStorage.logged = data;
                            $scope.userUpdate = $localStorage.logged;
-                           $uibModalInstance.close($localStorage.logged);
+                           $scope.disconnect();
+                           $location.path("/user");	
+                           alert("Profil uspesno azuriran!");
                        } else {
                            alert("Nije moguce promeniti informacije");
                        }

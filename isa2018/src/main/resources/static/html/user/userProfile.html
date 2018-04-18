@@ -22,15 +22,17 @@
     <div class="container" style="align:left; background-color:white;width:100%">
        
             
-               
-                	<br>
+                
+                	<br> 
+                	
                     Ime:<h5 ng-bind-html="loggedUser.data.name"></h5> 
                     Prezime:<h5 ng-bind-html="loggedUser.data.surname"></h5> 
                     Email:<h5 ng-bind-html="loggedUser.data.email"></h5>
                     Grad:<h5 ng-bind-html="loggedUser.data.city"></h5> 
                     Telefon:<h5 ng-bind-html="loggedUser.data.phoneNum"></h5>  
                     <br>  
-                    <a href="#!/user/updateProfile" ng-click="disconnect()>Izmeni informacije</a> 
+                    <a href="#!/user/updateProfile" class="btn btn-success" role="button ng-click="disconnect()">Izmeni informacije</a>
+
 					<br>  
             
         </div>
