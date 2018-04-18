@@ -1,4 +1,4 @@
-<div ng-cloak ng-controller="UserFriendsController">
+<div ng-cloak ng-controller="SearchPeopleController">
    
    
    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
@@ -23,15 +23,15 @@
         <div class="carousel-caption">
 
             <div class="span3 well">
-                <div class="header">
+                
                     <h3 class="text-muted prj-name">
                         <span class="fa fa-users fa-2x principal-title"></span>
-                        <button type="button" class="btn btn-info btn-md" ng-click="openSearchPeopleModal()">Dodaj <span class="glyphicon glyphicon-plus"></span></button>
+                   <a href="#!/user/searchPeople" class="btn btn-success" role="button" ng-click="disconnect()">Dodaj prijatelja</a>
                         <button type="button" class="btn btn-default btn-md" ng-click="sortByName()">Sortiraj po imenu</button>
                         <button type="button" class="btn btn-default btn-md" ng-click="sortBySurname()">Sortraj po prezimenu</button>
                         <button type="button" class="btn btn-danger btn-md" ng-click="resetSort()">Restartuj sort</button>
                     </h3>
-                </div>
+                
 
                 <div class="jumbotron list-content">
                     <ul class="list-group"> 

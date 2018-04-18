@@ -26,8 +26,8 @@ public class RegUserController {
 
     @RequestMapping(value = "/getFriends/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<RegUser>> getFriends(@PathVariable("id") Long id){
-    	RegUser guest = regUserService.findOne(id);
-        List<RegUser> ret = guest.getFriendList();
+    	RegUser user = regUserService.findOne(id);
+        List<RegUser> ret = user.getFriendList();
         return new ResponseEntity<List<RegUser>>(ret, HttpStatus.OK);
     }
     
@@ -58,7 +58,7 @@ public class RegUserController {
     @MessageMapping("/searchPersons/{id}")
     @SendTo("/topic/persons/{id}")
     public List<RegUser> searchPersons(@DestinationVariable Long id, Message person){
-        List<RegUser> guestList = new ArrayList<RegUser>();
+        List<RegUser> userList = new ArrayList<RegUser>();
         RegUser user = regUserService.findOne(id);
         String[] splitNameSurname = person.getMessage().split(" ");
         if(splitNameSurname.length != 2){
@@ -66,28 +66,28 @@ public class RegUserController {
                 ArrayList<RegUser> personsByName = (ArrayList<RegUser>) regUserService.findByName(nameSurname);
                 ArrayList<RegUser> personsBySurname = (ArrayList<RegUser>) regUserService.findBySurname(nameSurname);
                 for(RegUser guest : personsByName){
-                    if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !guestList.contains(guest) && (user.getId() != guest.getId()))
-                        guestList.add(guest);
+                    if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !userList.contains(guest) && (user.getId() != guest.getId()))
+                    	userList.add(guest);
                 }
                 for(RegUser guest : personsBySurname){
-                    if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !guestList.contains(guest) && (user.getId() != guest.getId()))
-                        guestList.add(guest);
+                    if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !userList.contains(guest) && (user.getId() != guest.getId()))
+                    	userList.add(guest);
                 }
             }
         }else{
             ArrayList<RegUser> personsByNameAndSurname = (ArrayList<RegUser>) regUserService.findByNameAndSurname(splitNameSurname[0], splitNameSurname[1]);
             ArrayList<RegUser> personsBySurnameAndName = (ArrayList<RegUser>) regUserService.findByNameAndSurname(splitNameSurname[1], splitNameSurname[0]);
             for(RegUser guest : personsByNameAndSurname){
-                if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !guestList.contains(guest) && (user.getId() != guest.getId()))
-                    guestList.add(guest);
+                if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !userList.contains(guest) && (user.getId() != guest.getId()))
+                	userList.add(guest);
             }
             for(RegUser guest : personsBySurnameAndName){
-                if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !guestList.contains(guest) && (user.getId() != guest.getId()))
-                    guestList.add(guest);
+                if(!user.getFriendList().contains(guest) && !user.getSentList().contains(guest) && !user.getPendingList().contains(guest) && !userList.contains(guest) && (user.getId() != guest.getId()))
+                	userList.add(guest);
             }
         }
 
-        return guestList;
+        return userList;
     }
     
     @MessageMapping("/addFriend/{id}/{friendId}")

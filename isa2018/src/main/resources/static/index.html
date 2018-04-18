@@ -43,6 +43,8 @@
 	<script src="js/controllers/CinemaController.js"></script>
 	<script src="js/controllers/TheatreController.js"></script>
 	<script src="js/controllers/UpdateUserProfileController.js"></script>
+	<script src="js/controllers/SearchPeopleController.js"></script>
+	  
     <!-- Factories -->
     <script src="js/services/UserRegisterFactory.js"></script>
     <script src="js/services/LoginFactory.js"></script>
@@ -80,7 +82,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="#!/register">Registracija</a>
-      <div ng-if="$localStorage.logged == null">
+      <div ng-if="$localStorage.logged === null">
       <a class="nav-item nav-link disabled" href="#!/login">Login</a>
       </div>
       

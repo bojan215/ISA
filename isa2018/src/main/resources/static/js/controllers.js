@@ -5,6 +5,7 @@ angular.module('app.controllers',[
     'app.UserProfileController',
     'app.UserRegisterController',
     'app.UserHomeController',
+    'app.SearchPeopleController',
     'app.UserFriendsController',
     'app.UserFriendRequestsController',
     'app.UpdateUserProfileController',

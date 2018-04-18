@@ -14,6 +14,9 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpPro
         .when('/user/profile',{
             templateUrl : 'html/user/userProfile.html'
         })
+        .when('/user/searchPeople',{
+            templateUrl : 'html/user/searchPeople.html'
+        })
         .when('/user/updateProfile',{
             templateUrl : 'html/user/updateUserInfo.html'
         })
