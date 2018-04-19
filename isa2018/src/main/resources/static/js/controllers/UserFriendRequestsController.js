@@ -13,8 +13,10 @@ angular.module('app.UserFriendRequestsController', [])
                        $scope.showRequests = false;
                        UserFriendRequestsFactory.getFriendRequestsNumber($scope.loggedUser.data.id).then(function (data) {
                            $scope.friendRequestsNumber = data;
-                           if (data > 0)
+                           if (data > 0){
+                        	   console.log("ima zahteva za prijateljstvo");
                                $scope.showRequests = true;
+                           }
                        });
                        $scope.friendRequests = [];
                        UserFriendRequestsFactory.getFriendRequests($scope.loggedUser.data.id).then(function (data) {
@@ -53,7 +55,7 @@ angular.module('app.UserFriendRequestsController', [])
                    });
 
                    acceptedFriendRequestSubscription = $stomp.subscribe('/topic/friendAcceptedRequest/' + $localStorage.logged.data.id, function(friend, headers, res){
-                       toastr.info(friend.name + ' ' + friend.surname + ' accepted friend request.');
+                       toastr.info(friend.name + ' ' + friend.surname + ' je prihvatio zahtev za prijateljstvo.');
                    });
                });
 

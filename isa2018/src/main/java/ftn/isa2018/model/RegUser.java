@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,42 +23,26 @@ public class RegUser extends User implements Serializable{
 	  @OneToMany(mappedBy = "oglaskorisnik", cascade = CascadeType.ALL)
 	    @JsonIgnore
 	    private List<Oglas> oglasi = new ArrayList<Oglas>();
-	  
-    @ManyToMany(cascade = CascadeType.REFRESH /*, fetch = FetchType.EAGER*/) //izbacuje mi gresku za fetch o.O
+	@LazyCollection(LazyCollectionOption.FALSE)  
+    @ManyToMany(cascade = CascadeType.REFRESH ) //izbacuje mi gresku za fetch o.O
     @JoinColumn(name = "id")
     @JsonIgnore
     private List<RegUser> friendList = new ArrayList<RegUser>();
-
-    @ManyToMany(cascade = CascadeType.REFRESH /*, fetch = FetchType.EAGER*/)
+	@LazyCollection(LazyCollectionOption.FALSE) 
+    @ManyToMany(cascade = CascadeType.REFRESH )
     @JoinColumn(name = "id")
     @JsonIgnore
     private List<RegUser> pendingList = new ArrayList<RegUser>();
-
-    @ManyToMany(cascade = CascadeType.REFRESH /*, fetch = FetchType.EAGER*/)
-    @JoinColumn(name = "id")
+	@LazyCollection(LazyCollectionOption.FALSE) 
+    @ManyToMany(cascade = CascadeType.REFRESH )
+    @JoinColumn(name = "id") 
     @JsonIgnore
     private List<RegUser> sentList = new ArrayList<RegUser>();
     @Column(name = "active", nullable = false)
-    private boolean active;
+    private boolean active; 
 
 
-    /*
-    @ManyToMany(mappedBy = "acceptedRegUsers")
-    @JsonIgnore
-    private Set<Reservation> reservations;
 
-
-   
-
-    public Set<Reservation> getReservations() {
-
-        return reservations;
-    }
-
-    public void setReservations(Set<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-    */
     public RegUser() {
     }
     public RegUser(User user) {

@@ -4,7 +4,7 @@ angular.module('app.UserProfileFactory', [])
            var factory = {};
 
            factory.updateRegUser = function(usr){
-               return $http.put('/updateRegUser', {"name": usr.name, "surname": usr.surname, "city": usr.city, "phoneNum": usr.phoneNum, "password": usr.password, "email": usr.email, "id": usr.id});
+               return $http.put('/updateRegUser', {"id": usr.id, "name": usr.name, "surname": usr.surname, "city": usr.city, "phoneNum": usr.phoneNum,"email": usr.email, "password": usr.password });
            }
 
            factory.getFriendRequestsNumber = function(id){

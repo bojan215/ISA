@@ -60,7 +60,7 @@ angular.module('app.UserFriendsController', [])
                      });
 
                      acceptedFriendRequestSubscription = $stomp.subscribe('/topic/friendAcceptedRequest/' + $localStorage.logged.data.id, function(friend, headers, res){
-                         toastr.info(friend.name + ' ' + friend.surname + ' accepted friend request.');
+                         toastr.info(friend.name + ' ' + friend.surname + ' je prihvatio zahtev za prijateljstvo.');
                          UserFriendsFactory.getFriends($scope.loggedUser.data.id).then(function(data){
                              if(data != null){
                                  $scope.friends = data;
@@ -96,12 +96,7 @@ angular.module('app.UserFriendsController', [])
                });
            };
 
-           $scope.openSearchPeopleModal = function(){
-                $uibModal.open({
-                    templateUrl : 'html/user/searchPeopleModal.html',
-                    controller : 'SearchPeopleController'
-                });
-            }
+          
 
             $scope.delete = function(friendId){
                 $stomp.send('/app/deleteFriend/' + $scope.loggedUser.data.id + '/' + friendId);
@@ -114,48 +109,4 @@ angular.module('app.UserFriendsController', [])
             }
        })
 
-       .controller('SearchPeopleController', function($localStorage, $scope, $stomp, $uibModalInstance, $log, toastr, $location, UserFriendsFactory){
-            function init(){
-                $scope.foundPersons = [];
-            };
-
-           var subscription = null;
-           init();
-
-           $stomp.setDebug(function (args) {
-               $log.debug(args)
-           });
-
-           $stomp.connect('/stomp', {})
-                 .then(function(frame){
-                     subscription = $stomp.subscribe('/topic/persons/' + $localStorage.logged.data.id, function(persons, headers, res){
-                         $scope.$apply(function(){
-                             $scope.foundPersons = persons;
-                         });
-                     }, {});
-                 });
-
-           $scope.search = function(personForSearch){
-               var message = { 'message' : personForSearch };
-               $stomp.send('/app/searchPersons/' + $localStorage.logged.data.id, message);
-           };
-
-           $scope.addFriend = function(id){
-               $stomp.send('/app/addFriend/' + $localStorage.logged.data.id + '/' + id);
-               var temp = [];
-               for(i=0; i<$scope.foundPersons.length; i++){
-                   if($scope.foundPersons[i].id != id)
-                       temp.push($scope.foundPersons[i]);
-               }
-               $scope.foundPersons = temp;
-               toastr.success('Zahtev za prijateljstvo je poslat!');
-           };
-
-           $scope.close = function(){
-               subscription.unsubscribe();
-               $stomp.disconnect().then(function(){
-                   $log.info('disconnected');
-               })
-               $uibModalInstance.dismiss('cancel');
-           };
-        });
+       ;
