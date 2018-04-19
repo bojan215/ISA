@@ -10,6 +10,7 @@
       <a class="nav-item nav-link disabled" href="#!/user/profile">Moj Profil [<span style="color:black" ng-bind-html="loggedUser.data.name"></span>]</a>
       <a class="nav-item nav-link disabled" href="#!/user/friends" ng-click="disconnect()">Prijatelji</a>
        <a class="nav-item nav-link disabled" href="#!/user/friendRequests" ng-click="disconnect()">Zahtevi za prijateljstvo<span class="badge" ng-if="showRequests" style="background-color: red" ngshow="$scope.friendRequestsNumber"></span></a>
+       <a class="nav-item nav-link disabled" href="#!/user/fanzone" ng-click="disconnect()">Fan zona</a>
       </div>
       <div ng-if="$localStorage.logged !== null">
       <a class="nav-item" href="#!/" ng-click="logOut()">Izloguj se</a>

@@ -1,0 +1,38 @@
+<div ng-cloak ng-controller="FanzoneController">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link disabled" href="#!/user" ng-click="disconnect()">Pocetna</a>
+      <a class="nav-item nav-link disabled" href="#!/user/profile">Moj Profil [<span style="color:black" ng-bind-html="loggedUser.data.name"></span>]</a>
+      <a class="nav-item nav-link disabled" href="#!/user/friends" ng-click="disconnect()">Prijatelji</a>
+       <a class="nav-item nav-link disabled" href="#!/user/friendRequests">Zahtevi za prijateljstvo<span class="badge" ng-if="showRequests" style="background-color: red" ngshow="$scope.friendRequestsNumber"></span></a>
+       <a class="nav-item nav-link disabled" href="#!/user/fanzone" ng-click="disconnect()">Fan zona</a>
+      </div>
+      <div ng-if="$localStorage.logged !== null">
+      <a class="nav-item" href="#!/" ng-click="logOut()">Izloguj se</a>
+      </div>
+    </div>
+     
+
+	</nav>   
+    
+
+
+
+    <div class="container" style="align:left; background-color:white;width:100%">
+		<div class="jumbotron list-content">
+                    <ul class="list-group" >
+                    <h5> Oglasi </h5>
+                       		                        	
+                      
+                    </ul>
+ 
+            </div>
+       
+        </div>
+    
+</div>
