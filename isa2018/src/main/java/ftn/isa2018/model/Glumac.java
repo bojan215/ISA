@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "glumac")
 public class Glumac implements Serializable {
 	@Id
-	@Column(name = "glIme", nullable=false, unique=true)
+	@Column(name = "glIme")
 	private String ime;
 	@Column(name = "glPrezime")
 	private String prezime;

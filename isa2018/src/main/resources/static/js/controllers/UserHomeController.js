@@ -11,7 +11,7 @@ angular.module('app.UserHomeController', [])
                        $scope.loggedUser = $localStorage.logged;
                        $scope.friendRequestsNumber = 0;
                        $scope.showRequests = false;
-
+                       	
                        UserHomeFactory.getFriendRequestsNumber($scope.loggedUser.data.id).then(function(data){
                     	    
                            $scope.friendRequestsNumber = data;
@@ -20,18 +20,21 @@ angular.module('app.UserHomeController', [])
                        });
 
                       
-                   }
+                   } 
                }
            }; 
 
            var friendRequestSubscription = null;
            var acceptedFriendRequestSubscription = null;
            init();
-
+          // UserHomeFactory.getHistory($scope.loggedUser).success(function(data) {
+          //     $scope.histories = data;
+          // });
+           
     
            $stomp.setDebug(function(args){
                $log.debug(args);
-           });
+           }); 
 
            $stomp.connect('/stomp', {})
                  .then(function(frame){
@@ -60,5 +63,21 @@ angular.module('app.UserHomeController', [])
                    $log.info('disconnected');
                });
            };
+           $scope.historyToShow = $rootScope.historyToShow;
+           $scope.ocene = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
+           $scope.bioskopOcena = $scope.ocene[4];
+           $scope.pozoristeOcena = $scope.ocene[4];
+           $scope.projekcijaOcena = $scope.ocene[4];
+      
+
+          
+           $scope.ocena = function() {
+               $scope.historyToShow.bioskopOcena = $scope.bioskopOcena;
+               $scope.historyToShow.pozoristeOcena = $scope.pozoristeOcena;
+               $scope.historyToShow.projekcijaOcena = $scope.projekcijaOcena;
+               UserHomeFactory.updateHistory($scope.historyToShow).success(function(data) {
+                   $location.path("/user");
+               })
+           }
        })
     
