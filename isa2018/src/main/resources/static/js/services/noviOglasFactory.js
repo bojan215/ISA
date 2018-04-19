@@ -5,7 +5,7 @@ angular.module('app.noviOglasFactory',[])
         var factory = {};
 
         factory.postOglas = function(oglas) {
-            return $http.post('/postOglas', oglas);
+            return $http.post('/dodaj', oglas);
         }
 
         return factory; 

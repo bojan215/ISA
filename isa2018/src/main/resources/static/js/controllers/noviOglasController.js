@@ -14,11 +14,11 @@ angular.module('app.noviOglasController',[])
             }
         } 
 
-        $scope.newOglas = {id:null, name:'', surname:'', city:'', phoneNum:'', email:'', password:'', type:'REGUSER',  active:false};
+        $scope.newOglas = {id:null, naziv:'', opis:'', datum:'', type:'REGUSER',  active:false};
 
 
         function validate(oglas) {
-            if(oglas.naziv == '' || oglas.oppis == ''|| oglas.datum == '' ){
+            if(oglas.naziv == '' || oglas.opis == ''|| oglas.datum == '' ){
                 alert('Nisu popunjena sva polja!');
                 return false;
             }
