@@ -3,7 +3,9 @@ package ftn.isa2018.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
@@ -41,8 +44,10 @@ public class Predstava implements Serializable{
 	@Column(name = "preTermin")
 	private Date termin;
 	//Many to many glumci mogu glumiti u vise predstava
-	private ArrayList<Glumac> glumci;
-	@Column(name = "preOpis")
+	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@Column(name="glumac")
+	private List<Glumac> glumci;
+	@Column(name = "preOpis") 
 	private String opis; 
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pozId")
@@ -81,10 +86,10 @@ public class Predstava implements Serializable{
 		this.zanr = zanr;
 	}
 */
-	public ArrayList<Glumac> getGlumci() {
+	public List<Glumac> getGlumci() {
 		return glumci;
 	}
-	public void setGlumci(ArrayList<Glumac> glumci) {
+	public void setGlumci(List<Glumac> glumci) {
 		this.glumci = glumci;
 	}
 	public String getImeReditelj() {
