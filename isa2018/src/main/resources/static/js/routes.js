@@ -55,6 +55,9 @@ app.config(['$routeProvider','$httpProvider', function ($routeProvider, $httpPro
     	})
     	.when('/user/rekvizit',{ 
     		templateUrl : 'html/user/rekvizit.html'
+    	})
+    	 .when('/user/noviOglas',{ 
+    		templateUrl : 'html/user/noviOglas.html'
     	});
     
 }]); 

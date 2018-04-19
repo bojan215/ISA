@@ -13,6 +13,7 @@ angular.module('app.controllers',[
     'app.TheatreController',
     'app.ProjectionController',
     'app.PerformanceController',
-    'app.BusinessController'
+    'app.BusinessController',
+    'app.noviOglasController'
     
 ]);
