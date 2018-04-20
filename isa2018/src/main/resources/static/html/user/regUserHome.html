@@ -19,12 +19,89 @@
     </div>
     
 
-</nav>   
+</nav>    
+
+<div class="container" style="align:left; background-color:white;width:100%"> 
+<div style="margin:0 auto; width:50%">    
+	<button type="button" class="btn btn-primary btn-lg" ng-click = "show_me = !show_me">BIOSKOPI</button>
+	<button type="button" class="btn btn-danger btn-lg" ng-click = "show_me1 = !show_me1">POZORISTA</button>
+	<button type="button" class="btn btn-success btn-lg" ng-click = "show_me2 = !show_me2">REZERVACIJE</button>
+	</div>
+	<br><br><br><br><br><br> 
+</div>
+<div class="container" style="align:left; background-color:white;width:100%" ng-show = "show_me"> 
+		<h4>Bioskopi</h4>
+	    
+                            <table class="responstable">
+                            <thead>
+                			<tr style="color:blue">
+                		    <th width="200px">Naziv bioskopa</th>
+                		    <th width="150px">Adresa</th>
+                		    <th width="150px">Opis</th>
+               				 </tr>
+                			</thead>
+                      
+                       
+                            <tr ng-repeat="bio in nadjeniBioskop1" >
+                            <td><span ng-bind-html="(bio.naziv)"></span></td>
+                            <td><span ng-bind-html="(bio.adresa)"></span></td>
+                            <td><span ng-bind-html="(bio.opis)"></span></td></tr>
+                            
+                             <tr ng-repeat="bio in nadjeniBioskop2" >
+                            <td><span ng-bind-html="(bio.naziv)"></span></td>
+                            <td><span ng-bind-html="(bio.adresa)"></span></td>
+                            <td><span ng-bind-html="(bio.opis)"></span></td></tr>   
+                        </table> <div class="break"></div>
+
+<hr>
+						 <div class="break"></div>
+</div>
+
+<div class="container" style="align:left; background-color:white;width:100%" ng-show = "show_me1">
+			<h4>Pozorista</h4>
+	     <table class="responstable">
+                            <thead>
+                			<tr style="color:blue">
+                		    <th width="200px">Naziv bioskopa</th>
+                		    <th width="150px">Adresa</th>
+                		    <th width="150px">Opis</th>
+               				 </tr>
+                			</thead>
+                      
+                       
+                            <tr ng-repeat="poz in nadjenaPozorista" >
+                            <td><span ng-bind-html="(poz.naziv)"></span></td>
+                            <td><span ng-bind-html="(poz.adresa)"></span></td>
+                            <td><span ng-bind-html="(poz.opis)"></span></td></tr>
+                            
+                            
+                            
+                            
+                            
+                          
+                        </table> <div class="break"></div>
+                     
+                    
+	
+	
+	
+	
+	
+<hr> 	
+</div> 
+
+<div class="container" style="align:left; background-color:white;width:100%" ng-show = "show_me2">
+	
+	<h4>Rezervacije</h4>
+	
+	
+<hr>	
+</div>
 <div class="container" style="align:left; background-color:white;width:100%"> 
         
-            <h3>Istorija poseta</h3><br><br>
+            <h4>Istorija poseta</h4><br><br>
             <table class="responstable">
-                <thead>
+                <thead> 
                 <tr style="color:blue">
                     <th width="200px">Bioskop</th>
                     <th width="150px">Datum</th>
@@ -32,7 +109,7 @@
                 </tr>
                 </thead>
                 <tbody> 
-                	<tr> 
+                	<tr>  
                   
                 </tr>
                 </tbody>
