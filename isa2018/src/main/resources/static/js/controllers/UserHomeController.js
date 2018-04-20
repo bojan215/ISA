@@ -62,7 +62,7 @@ angular.module('app.UserHomeController', [])
         					"predstava":[{"id":709,"naziv":"Rodoljupci","trajanje":"125","cena":600,"zanr":"Komedija","termin":["2017/05/01 15:00:00", "2017/05/02 15:00:00"]},
         								  {"id":710,"naziv":"Na Drini Cuprija","trajanje":"111","cena":500,"zanr":"Istorijska fikcija","termin":["2017/05/01 19:00:00", "2017/05/02 19:00:00"]}
         						]
-        				},
+        				}, 
         				{"id":606,"naziv":"Sala 2","segment":[
         					{"naziv":"vip","mesto":["1","2","3","4","5"]},
         					{"naziv":"balkon","mesto":["6","7","8","9","10"]},
