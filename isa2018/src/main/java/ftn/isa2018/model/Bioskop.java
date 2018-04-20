@@ -23,14 +23,16 @@ public class Bioskop implements Serializable {
     @GeneratedValue
     @Column(name = "bioId", nullable = false, unique=true)
 	private Long id;
-	@Column(name = "bioNaziv")
+	@Column(name = "naziv")
 	private String naziv;
-	@Column(name = "bioAdresa")
+	@Column(name = "adresa")
 	private String adresa;
-	@Column(name = "bioOpis")
+	@Column(name = "opis")
 	private String opis;
+	/*@Column(name = "ocena")
+	private String ocena;*/
 	@OneToMany(mappedBy = "bioskopprojekcija", cascade = CascadeType.ALL)
-	private java.util.List <Projekcija> projekcije = new ArrayList<Projekcija>();
+	private java.util.List <Projekcija> projekcija = new ArrayList<Projekcija>();
 	@OneToMany(mappedBy = "bioskopsala", cascade = CascadeType.ALL)
 	private java.util.List<Sala> sala;
 	
@@ -48,11 +50,11 @@ public class Bioskop implements Serializable {
 	}
 
 	public java.util.List<Projekcija> getProjekcija() {
-		return projekcije;
+		return projekcija;
 	}
 
 	public void setProjekcija(ArrayList<Projekcija> projekcija) {
-		this.projekcije = projekcija;
+		this.projekcija = projekcija;
 	}
 
 	public java.util.List<Sala> getSala() {
@@ -78,6 +80,14 @@ public class Bioskop implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
+	
+	/*public String getOcena() {
+		return ocena;
+	}
+
+	public void setOcena(String ocena) {
+		this.ocena = ocena;
+	}*/
 	
 	public java.util.List<Rekvizit> getRekvizit() {
 		return rekviziti;

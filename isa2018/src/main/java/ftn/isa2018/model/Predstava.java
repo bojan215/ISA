@@ -25,29 +25,31 @@ public class Predstava implements Serializable{
 	//?spisak karata sa popustima
 	@Column(name = "preId" , nullable=false, unique=true)
 	private String id;
-	@Column(name = "preNaziv")
+	@Column(name = "naziv")
 	private String naziv;
 
-	//dodati Poster img
-	//dodati prosecnu ocenu
-	@Column(name = "preCena")
+	/*@Column(name = "ocena")
+	private String ocena;
+	@Column(name = "poster")
+	private String poster;*/
+	@Column(name = "cena")
 	private String cena;
-	@Column(name = "preTrajanje")
+	@Column(name = "trajanje")
 	private String trajanje;
-	@Column(name = "preSala")
+	@Column(name = "sala")
 	private Sala sala;
 	@Enumerated(EnumType.STRING)
-	@Column(name = "preZanr")
+	@Column(name = "zanr")
 	private ZanrType zanr;
-	@Column(name = "preImeRed")
+	@Column(name = "imeReditelj")
 	private String imeReditelj;
-	@Column(name = "preTermin")
+	@Column(name = "termin")
 	private Date termin;
 	//Many to many glumci mogu glumiti u vise predstava
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@Column(name="glumac")
+	@Column(name="glumci")
 	private List<Glumac> glumci;
-	@Column(name = "preOpis") 
+	@Column(name = "opis") 
 	private String opis; 
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pozId")
@@ -111,6 +113,7 @@ public class Predstava implements Serializable{
 	public void setTrajanje(String trajanje) {
 		this.trajanje = trajanje;
 	}
+	
 	public Date getTermin() {
 		return termin;
 	}
@@ -118,4 +121,18 @@ public class Predstava implements Serializable{
 		this.termin = termin;
 	} 
 	
+	/*public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+	
+	public String getOcena() {
+		return ocena;
+	}
+	public void setOcena(String ocena) {
+		this.ocena = ocena;
+	}
+	*/
 }

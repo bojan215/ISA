@@ -15,11 +15,11 @@ angular.module('app.PerformanceController',[])
             }
         } 
 
-        $scope.performance = {id:null, name:'', actors:'', type:'', director:'', dutration:'', poster:'', evaluation:'', description:'', hall:'', term:'', price:'', active:false};
+        $scope.performance = {id:null, naziv:'', glumci:'', zanr:'', imeReditelj:'', trajanje:'', poster:'', ocena:'', opis:'', sala:'', termin:'', cena:'', active:false};
 
 
         function validate(performance) {
-            if(performance.name == '' || performance.actors == ''|| performance.type == ''  || performance.director == '' || performance.dutration == '' || performance.poster == ''|| performance.evaluation == ''  || performance.description == '' || performance.hall == '' || performance.term == '' || performance.price == ''){
+            if(performance.naziv == '' || performance.glumci == ''|| performance.zanr == ''  || performance.imeReditelj == '' || performance.trajanje == '' || performance.poster == ''|| performance.ocena == ''  || performance.opis == '' || performance.sala == '' || performance.termin == '' || performance.cena == ''){
                 alert('Nisu popunjena sva polja!');
                 return false;
             }

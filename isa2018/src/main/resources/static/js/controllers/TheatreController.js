@@ -15,11 +15,11 @@ angular.module('app.TheatreController',[])
             }
         } 
 
-        $scope.theatre = {id:null, name:'', adress:'', description:'', evaluation:'', active:false};
+        $scope.theatre = {id:null, naziv:'', adresa:'', opis:'', ocena:'', active:false};
  
 
         function validate(cinema) {
-            if(theatre.name == '' || theatre.adress == ''|| theatre.description == ''  || theatre.evaluation == '' ){
+            if(theatre.naziv == '' || theatre.adresa == ''|| theatre.opis == ''  || theatre.ocena == '' ){
                 alert('Nisu popunjena sva polja!');
                 return false;
             }

@@ -17,12 +17,14 @@ public class Pozoriste implements Serializable{
 	private Long id;
 	
 	
-	@Column(name = "pozNaziv")
+	@Column(name = "naziv")
 	private String naziv;
-	@Column(name = "pozAdresa")
+	@Column(name = "adresa")
 	private String adresa;
-	@Column(name = "pozOpis")
+	@Column(name = "opis")
 	private String opis;
+	/*@Column(name = "ocena")
+	private String ocena;*/
 	@OneToMany(mappedBy = "pozoristepredstava", cascade = CascadeType.ALL)
 	private java.util.List<Predstava> predstava = new ArrayList<Predstava>();
 	@OneToMany(mappedBy = "pozoristesala", cascade = CascadeType.ALL)
@@ -67,6 +69,14 @@ public class Pozoriste implements Serializable{
 		this.opis = opis;
 	}
 
+	/*public String getOcena() {
+		return ocena;
+	}
+
+	public void setOcena(String ocena) {
+		this.ocena = ocena;
+	}
+*/
 	public Long getId() {
 		return id;
 	}

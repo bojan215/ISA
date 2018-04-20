@@ -15,11 +15,11 @@ angular.module('app.ProjectionController',[])
             }
         } 
 
-        $scope.projection = {id:null, name:'', actors:'', type:'', director:'', dutration:'', poster:'', evaluation:'', description:'', hall:'', term:'', price:'', active:false};
+        $scope.projection = {id:null, naziv:'', glumci:'', zanr:'', imeReditelj:'', trajanje:'', poster:'', ocena:'', opis:'', sala:'', termin:'', cena:'', active:false};
 
 
         function validate(projection) {
-            if(projection.name == '' || projection.actors == ''|| projection.type == ''  || projection.director == '' || projection.dutration == '' || projection.poster == ''|| projection.evaluation == ''  || projection.description == '' || projection.hall == '' || projection.term == '' || projection.price == ''){
+            if(projection.naziv == '' || projection.glumci == ''|| projection.zanr == ''  || projection.imeReditelj == '' || projection.trajanje == '' || projection.poster == ''|| projection.ocena == ''  || projection.opis == '' || projection.sala == '' || projection.termin == '' || projection.cena == ''){
                 alert('Nisu popunjena sva polja!');
                 return false;
             }
