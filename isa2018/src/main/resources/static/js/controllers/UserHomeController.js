@@ -1,8 +1,123 @@
 
 angular.module('app.UserHomeController', [])
-       .controller('UserHomeController', function($localStorage, $location, $scope, $rootScope, $uibModal, $stomp, $log, toastr,  UserHomeFactory){
+       .controller('UserHomeController', function($localStorage, $location, $scope, $sce,$compile, $rootScope, $uibModal, $stomp, $log, toastr,  UserHomeFactory){
+    	   
+    	 
+    	    
+    	    
+    	   
+    	   $scope.bioskopPrikaz=function(id){
+    		   $scope.proj =''; 
+    		   if($scope.nadjeniBioskop1[0].id===id){
+    			    
+    		 for(s in $scope.nadjeniBioskop1[0].sala){
+
+    			 for(p in $scope.nadjeniBioskop1[0].sala[s].projekcije){
+    				   
+    				 //console.log($scope.nadjeniBioskop1[0].sala[s].projekcije);
+    				for(d in $scope.projekcije){ 
+    					if($scope.projekcije[d].id===$scope.nadjeniBioskop1[0].sala[s].projekcije[p]){
+    					//console.log($scope.projekcije[d].naziv);  
+    					$scope.proj +='<tr><td>'+$scope.projekcije[d].naziv+'</td><td>'+$scope.projekcije[d].trajanje+'</td><td>'+$scope.projekcije[d].zanr+'</td><td><button type="button" class="btn btn-success btn-md" ng-click="datumPrikaz('+$scope.projekcije[d].id+')">Izaberi</button></td></tr>';
+    					
+    					$scope.proj +='<tr style="display:none"><td>'+$scope.projekcije[d].termin[0]+'</td><td>'+$scope.projekcije[d].termin[1]+'</td></tr>';
+    					document.getElementById("redTermin").style.display='inline';
+    					document.getElementById("redTermin").innerHTML = "";
+    						
+    					 
+    					$scope.proj=$sce.trustAsHtml($scope.proj); 
+    					 
+    					}       
+    					}   
+    			 } 
+    		 }    
+    			    
+    			    
+    			    
+    			   
+    			   
+    			   
+    			    
+    		   }else if($scope.nadjeniBioskop2[0].id===id){
+    			   
+    			   for(s in $scope.nadjeniBioskop2[0].sala){
+
+    	    			 for(p in $scope.nadjeniBioskop2[0].sala[s].projekcije){
+    	    				   
+    	    				 //console.log($scope.nadjeniBioskop1[0].sala[s].projekcije);
+    	    				for(d in $scope.projekcije){ 
+    	    					if($scope.projekcije[d].id===$scope.nadjeniBioskop2[0].sala[s].projekcije[p]){
+    	    					//console.log($scope.projekcije[d].naziv); 
+    	    						$scope.proj +='<tr><td>'+$scope.projekcije[d].naziv+'</td><td>'+$scope.projekcije[d].trajanje+'</td><td>'+$scope.projekcije[d].zanr+'</td><td><button type="button" class="btn btn-success btn-md" ng-click="datumPrikaz('+$scope.projekcije[d].id+')">Izaberi</button></td></tr>';
+    	        					$scope.proj=$sce.trustAsHtml($scope.proj); }       
+    	    					} 
+    	    			 } 
+    	    		 }    
+    	    			   
+    			   
+    			   
+    		   }
+    		    
+    		    
+    		   
+    		   
+    		   
+    	   };
+    	   $scope.pozoristePrikaz=function(id){
+    		   $scope.proj =''; 
+    		   
+    			    
+    		 for(s in $scope.nadjenaPozorista[0].sala){
+
+    			 for(p in $scope.nadjenaPozorista[0].sala[s].projekcije){
+    				   
+    				  
+    				for(d in $scope.predstave){  
+    					if($scope.predstave[d].id===$scope.nadjenaPozorista[0].sala[s].projekcije[p]){
+    					console.log($scope.predstave[d].naziv); 
+    					$scope.proj +='<tr><td>'+$scope.predstave[d].naziv+'</td><td>'+$scope.predstave[d].trajanje+'</td><td>'+$scope.predstave[d].zanr+'</td><td><button type="button" class="btn btn-success btn-md" ng-click="datumPrikaz('+$scope.predstave[d].id+')">Izaberi</button></td></tr>';
+    					$scope.proj=$sce.trustAsHtml($scope.proj);
+    					}        
+    					}  
+    			 } 
+    		 }    
+    			   
+    			    
+    			    
+    			   
+    			   
+    			   
+    			    
+    		  
+    		   
+    		   
+    	   };
+    	   
+    	   
+    	 
     	   $scope.bp=function(){
         	   
+    		   
+    		   
+    		   
+    		  var pr=[{"id":700,"naziv":"Shutter Island","trajanje":"125","cena":600,"zanr":"Misterija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+					  {"id":701,"naziv":"Prisoners","trajanje":"111","cena":500,"zanr":"Triler","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+					  {"id":702,"naziv":"The Town","trajanje":"102","cena":800,"zanr":"Crime","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+					  {"id":703,"naziv":"The Hangover","trajanje":"98","cena":300,"zanr":"Komedija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+					  {"id":704,"naziv":"Inception","trajanje":"125","cena":600,"zanr":"Misterija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+					  {"id":705,"naziv":"Get Out","trajanje":"111","cena":500,"zanr":"Triler","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+					  {"id":706,"naziv":"American Gangster","trajanje":"112","cena":800,"zanr":"Crime","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+					  {"id":707,"naziv":"Ride Along","trajanje":"98","cena":400,"zanr":"Komedija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]}
+					  ]; 
+    		  
+    		  
+    		   
+    		  var pre=[{"id":708,"naziv":"Rodoljupci","trajanje":"125","cena":600,"zanr":"Komedija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+    			  	   {"id":709,"naziv":"Na Drini Cuprija","trajanje":"111","cena":500,"zanr":"Istorijska fikcija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+    		  		   {"id":710,"naziv":"Gospodja Ministarka","trajanje":"112","cena":800,"zanr":"Komedija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
+    		  		   {"id":711,"naziv":"Novi Sesir","trajanje":"98","cena":400,"zanr":"Komedija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]}
+    			  ]; 
+    		   
         	   var b11={
         			"id":500,   
         			"naziv":"Cineplexx – Delta City",
@@ -12,20 +127,17 @@ angular.module('app.UserHomeController', [])
         				{"id":600,"naziv":"Sala 1","segment":[
         					{"naziv":"vip","mesto":["1","2","3","4","5"]},
         					{"naziv":"balkon","mesto":["6","7","8","9","10"]},
-        					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],	
-        					"projekcija":[{"id":700,"naziv":"Shutter Island","trajanje":"125","cena":600,"zanr":"Misterija","termin":["2017/05/01 18:00:00", "2017/05/02 18:00:00"]},
-        								  {"id":701,"naziv":"Prisoners","trajanje":"111","cena":500,"zanr":"Triler","termin":["2017/05/01 21:00:00", "2017/05/02 21:00:00"]}
-        						]
+        					{"naziv":"obicno"," ":["11","12","13","14","15"]}],	
+        					"projekcije":[700,701]
         				},
         				{"id":601,"naziv":"Sala 2","segment":[
         					{"naziv":"vip","mesto":["1","2","3","4","5"]},
         					{"naziv":"balkon","mesto":["6","7","8","9","10"]},
         					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],	
-        					"projekcija":[{"id":703,"naziv":"The Town","trajanje":"102","cena":800,"zanr":"Crime","termin":["2017/05/01 18:00:00", "2017/05/02 18:00:00"]},
-        								  {"id":704,"naziv":"The Hangover","trajanje":"98","cena":300,"zanr":"Komedija","termin":["2017/05/01 21:00:00", "2017/05/02 21:00:00"]}
-        						]}]
-	   
-        	   };
+        					"projekcije":[702,703]
+        				}]
+	    
+        	   }; 
         	   var b12={
         			"id":501,   
         			"naziv":"Arena Cineplex",
@@ -35,18 +147,16 @@ angular.module('app.UserHomeController', [])
         				{"id":603,"naziv":"Sala 1","segment":[
         					{"naziv":"vip","mesto":["1","2","3","4","5"]},
         					{"naziv":"balkon","mesto":["6","7","8","9","10"]},
-        					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],	
-        					"projekcija":[{"id":705,"naziv":"Inception","trajanje":"125","cena":600,"zanr":"Misterija","termin":["2017/05/01 18:00:00", "2017/05/02 18:00:00"]},
-        								  {"id":706,"naziv":"Get Out","trajanje":"111","cena":500,"zanr":"Triler","termin":["2017/05/01 21:00:00", "2017/05/02 21:00:00"]}
-        						]
-        				},
+        					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],
+        					"projekcije":[704,705]
+        				}, 
         				{"id":604,"naziv":"Sala 2","segment":[
         					{"naziv":"vip","mesto":["1","2","3","4","5"]},
         					{"naziv":"balkon","mesto":["6","7","8","9","10"]},
-        					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],	
-        					"projekcija":[{"id":707,"naziv":"American Gangster","trajanje":"112","cena":800,"zanr":"Crime","termin":["2017/05/01 18:00:00", "2017/05/02 18:00:00"]},
-        								  {"id":708,"naziv":"Ride Along","trajanje":"98","cena":400,"zanr":"Komedija","termin":["2017/05/01 21:00:00", "2017/05/02 21:00:00"]}
-        						]}]
+        					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],
+        					"projekcije":[706,707] 
+        				}]
+        			
 	   
         	   };
         	   var p1={
@@ -59,19 +169,18 @@ angular.module('app.UserHomeController', [])
         					{"naziv":"vip","mesto":["1","2","3","4","5"]},
         					{"naziv":"balkon","mesto":["6","7","8","9","10"]},
         					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],	
-        					"predstava":[{"id":709,"naziv":"Rodoljupci","trajanje":"125","cena":600,"zanr":"Komedija","termin":["2017/05/01 15:00:00", "2017/05/02 15:00:00"]},
-        								  {"id":710,"naziv":"Na Drini Cuprija","trajanje":"111","cena":500,"zanr":"Istorijska fikcija","termin":["2017/05/01 19:00:00", "2017/05/02 19:00:00"]}
-        						]
-        				}, 
+        					"projekcije":[708,709]
+        				 }, 
         				{"id":606,"naziv":"Sala 2","segment":[
         					{"naziv":"vip","mesto":["1","2","3","4","5"]},
         					{"naziv":"balkon","mesto":["6","7","8","9","10"]},
         					{"naziv":"obicno","mesto":["11","12","13","14","15"]}],	
-        					"predstava":[{"id":711,"naziv":"Gospodja Ministarka","trajanje":"112","cena":800,"zanr":"Komedija","termin":["2017/05/01 15:00:00", "2017/05/02 15:00:00"]},
-        								  {"id":712,"naziv":"Novi Sesir","trajanje":"98","cena":400,"zanr":"Komedija","termin":["2017/05/01 19:00:00", "2017/05/02 19:00:00"]}
-        						]}]
+        					"projekcije":[710,711]
+        				}]
 	   
         	   };
+        	   $scope.projekcije=pr;
+        	   $scope.predstave=pre;
         	   $scope.nadjeniBioskop1=[b11];
         	   $scope.nadjeniBioskop2=[b12];
         	   $scope.nadjenaPozorista=[p1];
@@ -82,7 +191,7 @@ angular.module('app.UserHomeController', [])
   
            };
 
-    	   
+          
     	   function init(){
         	
                if($localStorage.logged == null)
@@ -91,6 +200,10 @@ angular.module('app.UserHomeController', [])
                    if($localStorage.logged.data.type != 'REGUSER')
                        $location.path("/");
                    else{
+                	   $scope.proj ="";
+                	   $scope.bio1=false;
+                	   $scope.bio2=false;
+                	   $scope.poz1=false;
                 	   $scope.bp();
                 	   $scope.show_me=false;
                 	   $scope.show_me1=false;

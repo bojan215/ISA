@@ -29,6 +29,29 @@
 	</div>
 	<br><br><br><br><br><br> 
 </div>
+
+
+<div id="prikaziIzbor" class="container" style="align:left; background-color:grey;width:100%">
+ <h5>Projekcije</h5><br>
+ <p></p>
+ <table class="responstable">
+                            <thead>
+                			<tr>
+                		    <th width="200px">Naziv</th>
+                		    <th width="150px">Trajanje</th>               		   
+                		    <th width="150px">Zanr</th> 
+                		    <th width="150px"></th>
+               				 </tr>
+                			</thead>
+                			
+	  			 <tbody ng-bind-html="proj" ></tbody>
+                 <tr id="redTermin" style="display:none"><td></td></tr> 
+
+	</table>
+</div>
+ 
+
+
 <div class="container" style="align:left; background-color:white;width:100%" ng-show = "show_me"> 
 		<h4>Bioskopi</h4>
 	    
@@ -43,14 +66,25 @@
                       
                        
                             <tr ng-repeat="bio in nadjeniBioskop1" >
+                            
                             <td><span ng-bind-html="(bio.naziv)"></span></td>
                             <td><span ng-bind-html="(bio.adresa)"></span></td>
-                            <td><span ng-bind-html="(bio.opis)"></span></td></tr>
+                            <td><span ng-bind-html="(bio.opis)"></span></td>
+                            <td><button type="button" class="btn btn-success btn-md" ng-click = "bioskopPrikaz(bio.id)">Izaberi</button>
+                            </td>
                             
+                            </tr>
+                            
+                           	
                              <tr ng-repeat="bio in nadjeniBioskop2" >
                             <td><span ng-bind-html="(bio.naziv)"></span></td>
                             <td><span ng-bind-html="(bio.adresa)"></span></td>
-                            <td><span ng-bind-html="(bio.opis)"></span></td></tr>   
+                            <td><span ng-bind-html="(bio.opis)"></span></td>                             
+                            <td><button type="button" class="btn btn-success btn-md" ng-click = "bioskopPrikaz(bio.id)">Izaberi</button></td>                       
+                            </tr> 
+                      		<tr id="bio2" ng-show="bio2">
+                           		
+                           	</tr>
                         </table> <div class="break"></div>
 
 <hr>
@@ -62,7 +96,7 @@
 	     <table class="responstable">
                             <thead>
                 			<tr style="color:blue">
-                		    <th width="200px">Naziv bioskopa</th>
+                		    <th width="200px">Naziv Pozorista</th>
                 		    <th width="150px">Adresa</th>
                 		    <th width="150px">Opis</th>
                				 </tr>
@@ -72,9 +106,9 @@
                             <tr ng-repeat="poz in nadjenaPozorista" >
                             <td><span ng-bind-html="(poz.naziv)"></span></td>
                             <td><span ng-bind-html="(poz.adresa)"></span></td>
-                            <td><span ng-bind-html="(poz.opis)"></span></td></tr>
-                            
-                            
+                            <td><span ng-bind-html="(poz.opis)"></span></td>
+                            <td><button type="button" class="btn btn-success btn-md" ng-click = "pozoristePrikaz(poz.id)">Izaberi</button></td>
+                            </tr>
                             
                             
                             
