@@ -30,31 +30,127 @@
 	<br><br><br><br><br><br> 
 </div>
 
-
 <div id="prikaziIzbor" class="container" style="align:left; background-color:grey;width:100%">
- <h5>Projekcije</h5><br>
- <p></p>
- <table class="responstable">
-                            <thead>
-                			<tr>
-                		    <th width="200px">Naziv</th>
-                		    <th width="150px">Trajanje</th>               		   
-                		    <th width="150px">Zanr</th> 
-                		    <th width="150px"></th>
-               				 </tr>
-                			</thead>
-                			
-	  			 <tbody ng-bind-html="proj" ></tbody>
-                 <tr id="redTermin" style="display:none"><td></td></tr> 
+ 
+<div>
+<div style="align:left; background-color:aqua;" ng-show="terminTrue"><br>
+Projekcija:<h5 ng-bind-html="tekst1"></h5>
 
-	</table>
+
+Dostupni termini:<br><br>
+<form name="terminForm"> 
+
+<p ng-bind-html="tekst2"></p> 
+
+<input type="radio" ng-model="izabranoTermin" value="0" ng-change='potvrdi(izabranoTermin)'><br><br>  
+
+<p ng-bind-html="tekst02"></p> 
+
+<input type="radio" ng-model="izabranoTermin" value="1" ng-change='potvrdi(izabranoTermin)'>
+<br>  
+
+
+</form>    
+<br>  
+ 
+
+
+ 
+Izaberi mesto:<br> 
+<!-- 
+<form name="myForm2"  ng-controller="UserHomeController">
+<p ng-repeat="m in mesta1 track by $index">
+aaaaaaaaaa 
+<span ng-if="m===0">
+dddddddddd  
+<label>  
+    <input type="radio" ng-model="broj" ng-value="brojac" >
+    <span ng-bind-html="brojac"></span>
+  </label>   
+</span>  
+<span ng-bind-html="brojac++"></span> 
+</p>
+  
+</form> 
+ -->
+<form name="myForm" >
+	
+  <label> 
+    <input type="radio" ng-model="broj" value="0">
+    1
+  </label> 
+  <label> 
+    <input type="radio" ng-model="broj" value="1">
+    2
+  </label>
+  <label>
+    <input type="radio" ng-model="broj" value="2">
+    3
+  </label>
+    <label>
+    <input type="radio" ng-model="broj" value="3">
+    4
+  </label>
+  <label>
+    <input type="radio" ng-model="broj" value="4">
+    5
+  </label><br>
+  <label>
+    <input type="radio" ng-model="broj" value="5">
+    6
+  </label>
+    <label>
+    <input type="radio" ng-model="broj" value="6">
+    7
+  </label>
+  <label>
+    <input type="radio" ng-model="broj" value="7"> 
+    8
+  </label>
+  <label>
+    <input type="radio" ng-model="broj" value="8">
+    9
+  </label>
+    <label>
+    <input type="radio" ng-model="broj" value="9">
+    10
+  </label><br> 
+  <label>
+    <input type="radio" ng-model="broj" value="10">
+	11
+  </label>
+  <label>
+    <input type="radio" ng-model="broj" value="11">
+    12
+  </label>
+      <label>
+    <input type="radio" ng-model="broj" value="12">
+    13
+  </label>
+  <label>
+    <input type="radio" ng-model="broj" value="13">
+	14
+  </label>
+  <label>
+    <input type="radio" ng-model="broj" value="14">
+    15
+  </label><br>
+ <button type="button" class="btn btn-success btn-md" ng-click = "rezervisi(izabranoTermin)">Rezervisi</button>
+
+</form> 
+ 
+</div>
+</div> 
+ 
+  
+
 </div>
  
 
 
 <div class="container" style="align:left; background-color:white;width:100%" ng-show = "show_me"> 
 		<h4>Bioskopi</h4>
-	    
+	   	    
                             <table class="responstable">
                             <thead>
                 			<tr style="color:blue">
@@ -70,21 +166,79 @@
                             <td><span ng-bind-html="(bio.naziv)"></span></td>
                             <td><span ng-bind-html="(bio.adresa)"></span></td>
                             <td><span ng-bind-html="(bio.opis)"></span></td>
-                            <td><button type="button" class="btn btn-success btn-md" ng-click = "bioskopPrikaz(bio.id)">Izaberi</button>
-                            </td>
                             
-                            </tr>
                             
-                           	
+                            </tr> 
+                           <tr>
+                		    <th width="200px">Naziv</th>
+                		    <th width="150px">Trajanje</th>               		   
+                		    <th width="150px">Zanr</th> 
+                		    <th width="150px"></th>
+               				 </tr>
+               				 
+                           	 <tr >
+                           	 <td>Shutter Island</td>
+                           	 <td>125</td> 
+                           	 <td>Misterija</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(700)">Izaberi</button></td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>Prisoners</td>
+                           	 <td>111</td>
+                           	 <td>Triler</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(701)">Izaberi</button></td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>The Town</td>
+                           	 <td>102</td>
+                           	 <td>Crime</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(702)">Izaberi</button></td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>The Hangover</td>
+                           	 <td>98</td>
+                           	 <td>Komedija</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(703)">Izaberi</button></td>
+                           	 </tr>
+                           	 </table>
+                           	 
+                           	 
+                           	 <table class="responstable">
                              <tr ng-repeat="bio in nadjeniBioskop2" >
                             <td><span ng-bind-html="(bio.naziv)"></span></td>
                             <td><span ng-bind-html="(bio.adresa)"></span></td>
                             <td><span ng-bind-html="(bio.opis)"></span></td>                             
-                            <td><button type="button" class="btn btn-success btn-md" ng-click = "bioskopPrikaz(bio.id)">Izaberi</button></td>                       
                             </tr> 
-                      		<tr id="bio2" ng-show="bio2">
-                           		
-                           	</tr>
+                      		 <tr>
+                		    <th width="200px">Naziv</th>
+                		    <th width="150px">Trajanje</th>               		   
+                		    <th width="150px">Zanr</th> 
+                		    <th width="150px"></th>
+               				 </tr>
+               				 <tr >
+                           	 <td>Inception</td>
+                           	 <td>135</td>
+                           	 <td>Misterija</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(704)">Izaberi</button></td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>Get Out</td>
+                           	 <td>141</td>
+                           	 <td>Triler</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(705)">Izaberi</button></td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>American Gangster</td>
+                           	 <td>133</td>
+                           	 <td>Crime</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(706)">Izaberi</button></td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>Ride Along</td>
+                           	 <td>91</td>
+                           	 <td>Komedija</td>
+                           	 <td><button type="button" class="btn btn-success btn-md" ng-click = "rezervisiMesta(701)">Izaberi</button></td>
+                           	 </tr>
                         </table> <div class="break"></div>
 
 <hr>
@@ -109,7 +263,26 @@
                             <td><span ng-bind-html="(poz.opis)"></span></td>
                             <td><button type="button" class="btn btn-success btn-md" ng-click = "pozoristePrikaz(poz.id)">Izaberi</button></td>
                             </tr>
-                            
+                            <tr >
+                           	 <td>Rodoljupci</td>
+                           	 <td>125</td>
+                           	 <td>Komedija</td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>Na Drini Cuprija</td>
+                           	 <td>111</td>
+                           	 <td>Istorijska fikcija</td>
+                           	 </tr>
+                           	  <tr >
+                           	 <td>Gospodja Ministarka</td>
+                           	 <td>112</td>
+                           	 <td>Komedija</td> 
+                           	 </tr>
+                           	  <tr >
+                           	 <td>Novi Sesir</td>
+                           	 <td>98</td>
+                           	 <td>Komedija</td>
+                           	 </tr>
                             
                             
                           
@@ -128,6 +301,22 @@
 	
 	<h4>Rezervacije</h4>
 	
+	<table class="responstable">
+	<thead><tr>
+	<th>Projekcija</th><th>Trajanje</th><th>Zanr</th>
+	<th>Ukloni</th>
+	</tr>
+	</thead>
+	
+	<tr >
+	<td ng-bind-html="(rezd.naziv)"></td>
+	<td ng-bind-html="(rezd.trajanje)"></td>
+	<td ng-bind-html="(rezd.zanr)"></td>
+	<td><button type="button" class="btn btn-danger btn-md" ng-click = "ukloni()">Otkazi</button></td>
+
+	</tr>  
+	 
+	</table>
 	
 <hr>	
 </div>

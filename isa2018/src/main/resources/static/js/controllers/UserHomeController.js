@@ -1,32 +1,100 @@
 
 angular.module('app.UserHomeController', [])
-       .controller('UserHomeController', function($localStorage, $location, $scope, $sce,$compile, $rootScope, $uibModal, $stomp, $log, toastr,  UserHomeFactory){
+       .controller('UserHomeController', function($localStorage,  $scope, $timeout,$compile, $sce,$location, $rootScope, $uibModal, $stomp, $log, toastr,  UserHomeFactory){
     	   
-    	 
+    	   $scope.rezervisi=function(ttt){
+    		  for(a in $localStorage.projekcije){
+    			  if($localStorage.projekcije[a].id==$localStorage.zauzetoId){
+    				  for(i in $localStorage.projekcije[a].termin){
+    					  console.log($localStorage.projekcije[a].termin[i].m);  	
+    					  if(i==$localStorage.pozdrav){ 
+    						  console.log($localStorage.projekcije[a].termin[i].m[$scope.broj]);
+    						
+    							  $localStorage.projekcije[a].termin[i].m[$scope.broj]=1;
+    							  console.log($localStorage.projekcije[a].termin[i].m[$scope.broj]);
+    						  $localStorage.rezerv=$localStorage.projekcije[a];
+    						  
+    						  
+    					  } 
+    				  }  
+    			  } 
+    		    
+    		    
+    		    
+    		   
+    		  }
+    		     
+    		  location.reload(); 
+    		 
+    	   };
+    	   $scope.ukloni=function(){
+    		delete $scope.rezd;    
+    		delete $localStorage.rezerv; 
+    		location.reload(); 
+    	   };
+    	   $scope.potvrdi=function(t){
+    		   
+    		   $localStorage.pozdrav=t;  
+    		    
+    		   $scope.$apply();
+    	   }
+    	     
     	    
-    	    
+    	   $scope.rezervisiMesta=function (id){
+    		   for(a in $localStorage.projekcije){
+    			   if($localStorage.projekcije[a].id==id){
+    				   $localStorage.zauzetoId=id;
+    				   $localStorage.zauzeto=$localStorage.projekcije[a];
+    				   $scope.tekst1=$localStorage.projekcije[a].naziv;
+    				  
+    				  
+    					  
+    					   $scope.tekst2=$localStorage.projekcije[a].termin[0].t;
+    					   $scope.tekst2+=" Cena: ("+$localStorage.projekcije[a].cena +" RSD)"; 
+    					   console.log($scope.tekst2); 
+    					   $scope.tekst02=$localStorage.projekcije[a].termin[1].t;
+    					   $scope.tekst02+=" Cena: ("+$localStorage.projekcije[a].cena +" RSD)";
+    					   $scope.mesta1=$localStorage.projekcije[a].termin[0].m; 
+    					   $scope.mesta2=$localStorage.projekcije[a].termin[1].m;
+    					for (i in $localStorage.projekcije[a].termin[0].m){
+    						console.log($localStorage.projekcije[a].termin[0].m[i]);
+    					}  
+    				    
+    			   } 
+    			
+    		   } 
+    		     
+    		  
+    		   $scope.terminTrue=true; 
+    		   $scope.izabran=id; 
+    		   $scope.$apply();  
+    		   //$scope.broj je mesto izabrano
+    		   //termin izabrati 
+    	   }    
+    	     
     	   
     	   $scope.bioskopPrikaz=function(id){
-    		   $scope.proj =''; 
+    		   $scope.proj ='';  
     		   if($scope.nadjeniBioskop1[0].id===id){
     			    
     		 for(s in $scope.nadjeniBioskop1[0].sala){
 
-    			 for(p in $scope.nadjeniBioskop1[0].sala[s].projekcije){
+    			 for(p in $scope.nadjeniBioskop1[0].sala[s].projekcije){ 
     				   
     				 //console.log($scope.nadjeniBioskop1[0].sala[s].projekcije);
-    				for(d in $scope.projekcije){ 
-    					if($scope.projekcije[d].id===$scope.nadjeniBioskop1[0].sala[s].projekcije[p]){
+    				for(d in $localStorage.projekcije){ 
+    					if($localStorage.projekcije[d].id===$localStorage.nadjeniBioskop1[0].sala[s].projekcije[p]){
     					//console.log($scope.projekcije[d].naziv);  
-    					$scope.proj +='<tr><td>'+$scope.projekcije[d].naziv+'</td><td>'+$scope.projekcije[d].trajanje+'</td><td>'+$scope.projekcije[d].zanr+'</td><td><button type="button" class="btn btn-success btn-md" ng-click="datumPrikaz('+$scope.projekcije[d].id+')">Izaberi</button></td></tr>';
-    					
+    					$scope.proj +='<tr><td>'+$scope.projekcije[d].naziv+'</td><td>'+$scope.projekcije[d].trajanje+'</td><td>'+$scope.projekcije[d].zanr+'</td><td><button type="button" class="btn btn-success btn-md" ng-click="izabran='+$scope.projekcije[d].id+'">Izaberi</button></td></tr>'; 
+    					 
     					$scope.proj +='<tr style="display:none"><td>'+$scope.projekcije[d].termin[0]+'</td><td>'+$scope.projekcije[d].termin[1]+'</td></tr>';
-    					document.getElementById("redTermin").style.display='inline';
-    					document.getElementById("redTermin").innerHTML = "";
+    					 
+    					document.getElementById("redTermin").style.display='inline';  
+    					document.getElementById("redTermin").innerHTML = ""; 
     						
-    					 
+    					  
     					$scope.proj=$sce.trustAsHtml($scope.proj); 
-    					 
+    					$scope.terminTrue=true; 
     					}       
     					}   
     			 } 
@@ -36,7 +104,7 @@ angular.module('app.UserHomeController', [])
     			    
     			   
     			   
-    			   
+    			    
     			    
     		   }else if($scope.nadjeniBioskop2[0].id===id){
     			   
@@ -49,7 +117,9 @@ angular.module('app.UserHomeController', [])
     	    					if($scope.projekcije[d].id===$scope.nadjeniBioskop2[0].sala[s].projekcije[p]){
     	    					//console.log($scope.projekcije[d].naziv); 
     	    						$scope.proj +='<tr><td>'+$scope.projekcije[d].naziv+'</td><td>'+$scope.projekcije[d].trajanje+'</td><td>'+$scope.projekcije[d].zanr+'</td><td><button type="button" class="btn btn-success btn-md" ng-click="datumPrikaz('+$scope.projekcije[d].id+')">Izaberi</button></td></tr>';
-    	        					$scope.proj=$sce.trustAsHtml($scope.proj); }       
+    	        					$scope.proj=$sce.trustAsHtml($scope.proj);
+    	        					
+    	    					}       
     	    					} 
     	    			 } 
     	    		 }    
@@ -97,9 +167,9 @@ angular.module('app.UserHomeController', [])
     	 
     	   $scope.bp=function(){
         	   
+    		     
     		   
-    		   
-    		   
+    		    
     		  var pr=[{"id":700,"naziv":"Shutter Island","trajanje":"125","cena":600,"zanr":"Misterija","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
 					  {"id":701,"naziv":"Prisoners","trajanje":"111","cena":500,"zanr":"Triler","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
 					  {"id":702,"naziv":"The Town","trajanje":"102","cena":800,"zanr":"Crime","termin":[{"t":"2018/05/01 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}, {"t":"2018/05/02 18:00:00","m":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}]},
@@ -179,19 +249,20 @@ angular.module('app.UserHomeController', [])
         				}]
 	   
         	   };
-        	   $scope.projekcije=pr;
-        	   $scope.predstave=pre;
-        	   $scope.nadjeniBioskop1=[b11];
-        	   $scope.nadjeniBioskop2=[b12];
-        	   $scope.nadjenaPozorista=[p1];
-        	   console.log($scope.nadjeniBioskop1);
-        	   console.log($scope.nadjeniBioskop2);
-        	   console.log($scope.nadjenaPozorista); 
+        	   if(typeof $localStorage.projekcije === 'undefined'){
+        		   $localStorage.projekcije=pr;
+            	   $localStorage.predstave=pre;
+            	   $localStorage.nadjeniBioskop1=[b11];
+            	   $localStorage.nadjeniBioskop2=[b12];
+            	   $localStorage.nadjenaPozorista=[p1];
+        	   }
         	   
+        	   
+        	    
   
            };
 
-          
+           
     	   function init(){
         	
                if($localStorage.logged == null)
@@ -200,11 +271,31 @@ angular.module('app.UserHomeController', [])
                    if($localStorage.logged.data.type != 'REGUSER')
                        $location.path("/");
                    else{
+                	     
+                	   $scope.rezd=$localStorage.rezerv;
+                	   console.log($localStorage.rezerv);
+                	   console.log($scope.rezd);
+                	    
+                	   $scope.brojac=0;
+                	   $scope.testt=false; 
+                	   $scope.mesta1="";
+                	   $scope.mesta2=""; 
+                	   $localStorage.pozdrav="60";  
+                	   $localStorage.zauzeto="";
+                	   $localStorage.zauzetoId=""; 
+                	   $scope.tekst1="";
+                	   $scope.tekst2="";
+                	   $scope.tekst02=""; 
+                	   $scope.terminTrue=false;  
+                	   $scope.izabran="555";
+                	   $scope.broj="20";
+                	   $scope.izabranoTermin="30"; 
                 	   $scope.proj ="";
+                	   $scope.tekst="nista"; 
                 	   $scope.bio1=false;
                 	   $scope.bio2=false;
                 	   $scope.poz1=false;
-                	   $scope.bp();
+                	   $scope.bp(); 
                 	   $scope.show_me=false;
                 	   $scope.show_me1=false;
                 	   $scope.show_me2=false;
@@ -235,7 +326,7 @@ angular.module('app.UserHomeController', [])
            $stomp.setDebug(function(args){
                $log.debug(args);
            }); 
-
+ 
            $stomp.connect('/stomp', {})
                  .then(function(frame){
                      friendRequestSubscription = $stomp.subscribe('/topic/friendRequest/' + $localStorage.logged.data.id, function(numberOfRequests, headers, res){
